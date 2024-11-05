@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    networks:
+      - my_net
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    networks:
+      - my_net
+
+  zookeeper:
+    image: bitnami/zookeeper:3.9.2-debian-12-r7
+    networks:
+      - my_net
+
+  kafka:
+    image: bitnami/kafka:3.3.2-debian-12-r26
+    networks:
+      - my_net
+    depends_on:
+      - zookeeper
+    
+
+
+  api-backend:
+    build: ./api
+    ports:
+      - "3000:3000"
+    networks:
+      - my_net
+    depends_on:
+      - data
+
+  data-generator:
+    build: ./data-generator
+    networks:
+      - my_net
+    depends_on:
+      - mongo
+      - redis
+      - kafka
+
+
+
+
+  dashboard:
+    build: ./dashboard
+    ports:
+      - "8080:5000"
+    networks:
+      - my_net
+    depends_on:
+      - api-gateway

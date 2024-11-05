@@ -1,0 +1,14 @@
+{
+    "name": "data-ingestion2",
+    "version": "1.0.0",
+    "description": "A Node.js app to insert transactions into MongoDB",
+    "main": "app.js",
+    "scripts": {
+      "start": "node app.js"
+    },
+    "dependencies": {
+      "mongodb": "^4.10.0",
+      "fs": "^0.0.1-security"
+    }
+  }
+  
