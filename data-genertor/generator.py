@@ -5,7 +5,7 @@ from kafka import KafkaProducer
 from datetime import datetime
 
 # Define the Kafka broker IP address
-KAFKA_IP = '172.18.0.5'  # Replace with the actual IP address of Kafka
+KAFKA_IP = '172.18.0.5'  
 
 # Initialize KafkaProducer with the broker IP address
 producer = KafkaProducer(bootstrap_servers=f'{KAFKA_IP}:9092')
